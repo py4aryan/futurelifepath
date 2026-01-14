@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ProgressSteps } from "@/components/ProgressSteps";
+import { MountainHero } from "@/components/MountainHero";
 import { cn } from "@/lib/utils";
-import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, Mountain, Sparkles, Flag } from "lucide-react";
 
 const stepLabels = ["Goals", "Interests", "Strengths", "Challenges", "Situation"];
 
@@ -59,6 +60,7 @@ export default function Onboarding() {
     struggles: [],
   });
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [showMountainReveal, setShowMountainReveal] = useState(false);
 
   const toggleSelection = (
     key: keyof Pick<FormData, "goals" | "interests" | "strengths" | "weaknesses" | "struggles">,
@@ -88,9 +90,10 @@ export default function Onboarding() {
 
   const handleSubmit = () => {
     setIsAnalyzing(true);
-    // Simulate AI analysis
+    // Simulate AI building the mountain
     setTimeout(() => {
-      navigate("/dashboard");
+      setIsAnalyzing(false);
+      setShowMountainReveal(true);
     }, 3000);
   };
 
@@ -111,26 +114,87 @@ export default function Onboarding() {
     }
   };
 
+  // Mountain reveal screen
+  if (showMountainReveal) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-background p-4 relative overflow-hidden">
+        {/* Mountain background */}
+        <MountainHero className="absolute inset-0 opacity-40" />
+        
+        <div className="relative text-center space-y-8 max-w-lg mx-auto animate-fade-in">
+          <div className="relative mx-auto">
+            <div className="w-28 h-28 mx-auto rounded-full bg-gradient-primary flex items-center justify-center animate-level-up shadow-glow">
+              <Mountain className="w-14 h-14 text-primary-foreground" />
+            </div>
+            <div className="absolute -top-2 -right-2 w-10 h-10 rounded-full bg-gradient-xp flex items-center justify-center animate-bounce-in shadow-xp">
+              <Flag className="w-5 h-5 text-xp-foreground" />
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="text-3xl md:text-4xl font-display font-bold">
+              Your Skills Mountain is Ready! 🏔️
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              We've built your personalized path to success. 
+              Each checkpoint is a skill you'll master on your climb to the summit.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <Button
+              variant="hero"
+              size="xl"
+              onClick={() => navigate("/dashboard")}
+              className="gap-2 w-full"
+            >
+              Start My Climb
+              <ArrowRight className="w-5 h-5" />
+            </Button>
+            <p className="text-sm text-muted-foreground">
+              Your first daily skills are waiting for you
+            </p>
+          </div>
+        </div>
+
+        {/* Floating celebration elements */}
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-3 h-3 rounded-full animate-confetti"
+            style={{
+              left: `${20 + i * 12}%`,
+              top: "40%",
+              backgroundColor: ['#FFD700', '#FF6B35', '#8B5CF6', '#22C55E', '#FF6B35', '#8B5CF6'][i],
+              animationDelay: `${i * 100}ms`,
+            }}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  // Analyzing screen
   if (isAnalyzing) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background p-4">
         <div className="text-center space-y-6 animate-fade-in">
           <div className="relative">
             <div className="w-24 h-24 mx-auto rounded-full bg-gradient-primary animate-pulse-glow flex items-center justify-center">
-              <Sparkles className="w-10 h-10 text-primary-foreground animate-pulse" />
+              <Mountain className="w-10 h-10 text-primary-foreground animate-float" />
             </div>
           </div>
           <div className="space-y-2">
-            <h2 className="text-2xl font-bold">Analyzing Your Future</h2>
+            <h2 className="text-2xl font-display font-bold">Building Your Mountain</h2>
             <p className="text-muted-foreground max-w-md mx-auto">
-              Our AI is simulating multiple life paths based on your profile...
+              Our AI is crafting your personalized Skills Mountain based on your unique profile...
             </p>
           </div>
-          <div className="flex justify-center gap-1">
+          <div className="flex justify-center gap-2">
             {[0, 1, 2].map((i) => (
               <div
                 key={i}
-                className="w-2 h-2 rounded-full bg-primary animate-bounce"
+                className="w-3 h-3 rounded-full bg-gradient-primary animate-bounce"
                 style={{ animationDelay: `${i * 150}ms` }}
               />
             ))}
@@ -154,10 +218,10 @@ export default function Onboarding() {
         type="button"
         onClick={onClick}
         className={cn(
-          "px-4 py-2.5 rounded-lg border text-sm font-medium transition-all duration-200",
+          "px-4 py-2.5 rounded-xl border-2 text-sm font-medium transition-all duration-200",
           selected
-            ? "bg-primary text-primary-foreground border-primary shadow-soft"
-            : "bg-card border-border hover:border-primary/50 hover:bg-primary/5"
+            ? "bg-primary text-primary-foreground border-primary shadow-soft scale-105"
+            : "bg-card border-border hover:border-primary/50 hover:bg-primary/5 hover:scale-[1.02]"
         )}
       >
         {children}
@@ -167,10 +231,10 @@ export default function Onboarding() {
     switch (currentStep) {
       case 1:
         return (
-          <div className="space-y-4 animate-fade-in">
+          <div className="space-y-6 animate-fade-in">
             <div className="text-center space-y-2">
-              <h2 className="text-2xl font-bold">What are your life goals?</h2>
-              <p className="text-muted-foreground">Select all that resonate with you</p>
+              <h2 className="text-2xl font-display font-bold">What peaks do you want to reach?</h2>
+              <p className="text-muted-foreground">Select the goals that inspire you most</p>
             </div>
             <div className="flex flex-wrap gap-3 justify-center">
               {goalOptions.map((goal) => (
@@ -188,9 +252,9 @@ export default function Onboarding() {
 
       case 2:
         return (
-          <div className="space-y-4 animate-fade-in">
+          <div className="space-y-6 animate-fade-in">
             <div className="text-center space-y-2">
-              <h2 className="text-2xl font-bold">What interests you?</h2>
+              <h2 className="text-2xl font-display font-bold">What drives your curiosity?</h2>
               <p className="text-muted-foreground">Choose areas you're passionate about</p>
             </div>
             <div className="flex flex-wrap gap-3 justify-center">
@@ -209,9 +273,9 @@ export default function Onboarding() {
 
       case 3:
         return (
-          <div className="space-y-4 animate-fade-in">
+          <div className="space-y-6 animate-fade-in">
             <div className="text-center space-y-2">
-              <h2 className="text-2xl font-bold">What are your strengths?</h2>
+              <h2 className="text-2xl font-display font-bold">What are your superpowers?</h2>
               <p className="text-muted-foreground">Recognize what makes you unique</p>
             </div>
             <div className="flex flex-wrap gap-3 justify-center">
@@ -230,10 +294,10 @@ export default function Onboarding() {
 
       case 4:
         return (
-          <div className="space-y-4 animate-fade-in">
+          <div className="space-y-6 animate-fade-in">
             <div className="text-center space-y-2">
-              <h2 className="text-2xl font-bold">What are your challenges?</h2>
-              <p className="text-muted-foreground">Identifying areas for growth</p>
+              <h2 className="text-2xl font-display font-bold">What obstacles slow you down?</h2>
+              <p className="text-muted-foreground">We'll build skills to overcome these</p>
             </div>
             <div className="flex flex-wrap gap-3 justify-center">
               {weaknessOptions.map((weakness) => (
@@ -251,14 +315,14 @@ export default function Onboarding() {
 
       case 5:
         return (
-          <div className="space-y-6 animate-fade-in">
+          <div className="space-y-8 animate-fade-in">
             <div className="text-center space-y-2">
-              <h2 className="text-2xl font-bold">Your current situation</h2>
-              <p className="text-muted-foreground">Help us understand where you are now</p>
+              <h2 className="text-2xl font-display font-bold">Where are you on your journey?</h2>
+              <p className="text-muted-foreground">Help us understand your starting point</p>
             </div>
-            
+
             <div className="space-y-4">
-              <p className="text-sm font-medium text-center">Where are you in life?</p>
+              <p className="text-sm font-medium text-center">Your current situation</p>
               <div className="flex flex-wrap gap-3 justify-center">
                 {situationOptions.map((situation) => (
                   <SelectableChip
@@ -273,7 +337,7 @@ export default function Onboarding() {
             </div>
 
             <div className="space-y-4">
-              <p className="text-sm font-medium text-center">What do you struggle with?</p>
+              <p className="text-sm font-medium text-center">What's holding you back?</p>
               <div className="flex flex-wrap gap-3 justify-center">
                 {struggleOptions.map((struggle) => (
                   <SelectableChip
@@ -297,12 +361,16 @@ export default function Onboarding() {
   return (
     <div className="min-h-screen bg-gradient-hero p-4 md:p-8">
       <div className="max-w-2xl mx-auto space-y-8">
+        {/* Logo */}
+        <div className="flex items-center justify-center gap-2 animate-fade-in">
+          <div className="w-10 h-10 rounded-xl bg-gradient-primary flex items-center justify-center">
+            <Mountain className="w-5 h-5 text-primary-foreground" />
+          </div>
+          <span className="font-display font-bold text-xl">LifePath</span>
+        </div>
+
         {/* Progress */}
-        <ProgressSteps
-          currentStep={currentStep}
-          totalSteps={5}
-          labels={stepLabels}
-        />
+        <ProgressSteps currentStep={currentStep} totalSteps={5} labels={stepLabels} />
 
         {/* Form Card */}
         <Card variant="glass" className="p-6 md:p-8">
@@ -326,7 +394,7 @@ export default function Onboarding() {
                 disabled={!canProceed()}
                 className="gap-2"
               >
-                {currentStep === 5 ? "Analyze My Future" : "Continue"}
+                {currentStep === 5 ? "Build My Mountain" : "Continue"}
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </div>
@@ -334,7 +402,7 @@ export default function Onboarding() {
         </Card>
 
         <p className="text-center text-xs text-muted-foreground">
-          Your data is private and used only to generate personalized recommendations.
+          Your data is private and used only to personalize your Skills Mountain.
         </p>
       </div>
     </div>

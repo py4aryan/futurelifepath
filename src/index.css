@@ -2,58 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 40 33% 98%;
-    --foreground: 230 25% 15%;
+    --background: 220 20% 97%;
+    --foreground: 230 25% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 230 25% 15%;
+    --card-foreground: 230 25% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 230 25% 15%;
+    --popover-foreground: 230 25% 12%;
 
-    --primary: 235 65% 50%;
+    --primary: 250 85% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 235 30% 95%;
-    --secondary-foreground: 235 65% 50%;
+    --secondary: 250 30% 95%;
+    --secondary-foreground: 250 85% 55%;
 
-    --muted: 230 20% 94%;
-    --muted-foreground: 230 15% 45%;
+    --muted: 220 20% 92%;
+    --muted-foreground: 220 15% 45%;
 
-    --accent: 15 85% 60%;
+    --accent: 25 100% 55%;
     --accent-foreground: 0 0% 100%;
 
-    --success: 150 60% 45%;
+    --success: 145 70% 45%;
     --success-foreground: 0 0% 100%;
 
-    --warning: 40 90% 55%;
-    --warning-foreground: 230 25% 15%;
+    --warning: 40 95% 55%;
+    --warning-foreground: 230 25% 12%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 230 20% 90%;
-    --input: 230 20% 90%;
-    --ring: 235 65% 50%;
+    --xp: 50 100% 50%;
+    --xp-foreground: 230 25% 12%;
 
-    --radius: 0.75rem;
+    --streak: 15 90% 55%;
+    --streak-foreground: 0 0% 100%;
 
-    /* Custom gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(235 65% 50% / 0.08) 0%, hsl(15 85% 60% / 0.08) 100%);
-    --gradient-primary: linear-gradient(135deg, hsl(235 65% 50%) 0%, hsl(255 65% 55%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(15 85% 60%) 0%, hsl(30 85% 55%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(235 30% 98%) 100%);
-    --gradient-path: linear-gradient(135deg, hsl(235 65% 50% / 0.05) 0%, hsl(255 65% 55% / 0.1) 100%);
+    --level: 280 80% 60%;
+    --level-foreground: 0 0% 100%;
+
+    --mountain-base: 145 40% 35%;
+    --mountain-mid: 145 50% 45%;
+    --mountain-peak: 200 30% 90%;
+
+    --border: 220 20% 88%;
+    --input: 220 20% 88%;
+    --ring: 250 85% 60%;
+
+    --radius: 0.875rem;
+
+    /* Game-inspired gradients */
+    --gradient-hero: linear-gradient(180deg, hsl(220 40% 96%) 0%, hsl(200 50% 92%) 50%, hsl(145 30% 88%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(250 85% 60%) 0%, hsl(280 80% 60%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(25 100% 55%) 0%, hsl(40 100% 55%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 30% 98%) 100%);
+    --gradient-mountain: linear-gradient(180deg, hsl(200 30% 90%) 0%, hsl(145 50% 45%) 40%, hsl(145 40% 35%) 100%);
+    --gradient-xp: linear-gradient(135deg, hsl(50 100% 50%) 0%, hsl(40 100% 55%) 100%);
+    --gradient-streak: linear-gradient(135deg, hsl(15 90% 55%) 0%, hsl(25 100% 55%) 100%);
+    --gradient-level: linear-gradient(135deg, hsl(280 80% 60%) 0%, hsl(250 85% 60%) 100%);
+    --gradient-reward: linear-gradient(135deg, hsl(50 100% 50%) 0%, hsl(25 100% 55%) 50%, hsl(280 80% 60%) 100%);
+    --gradient-sky: linear-gradient(180deg, hsl(200 60% 85%) 0%, hsl(200 50% 92%) 100%);
 
     /* Shadows */
-    --shadow-sm: 0 1px 2px hsl(230 25% 15% / 0.04);
-    --shadow-md: 0 4px 12px hsl(230 25% 15% / 0.08);
-    --shadow-lg: 0 8px 30px hsl(230 25% 15% / 0.12);
-    --shadow-glow: 0 0 40px hsl(235 65% 50% / 0.15);
+    --shadow-sm: 0 2px 4px hsl(220 25% 15% / 0.05);
+    --shadow-md: 0 4px 16px hsl(220 25% 15% / 0.08);
+    --shadow-lg: 0 12px 40px hsl(220 25% 15% / 0.12);
+    --shadow-glow: 0 0 30px hsl(250 85% 60% / 0.2);
+    --shadow-xp: 0 0 20px hsl(50 100% 50% / 0.4);
+    --shadow-streak: 0 0 20px hsl(15 90% 55% / 0.4);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -66,57 +86,71 @@
   }
 
   .dark {
-    --background: 230 25% 8%;
+    --background: 230 25% 6%;
     --foreground: 40 20% 95%;
 
-    --card: 230 25% 12%;
+    --card: 230 25% 10%;
     --card-foreground: 40 20% 95%;
 
-    --popover: 230 25% 12%;
+    --popover: 230 25% 10%;
     --popover-foreground: 40 20% 95%;
 
-    --primary: 235 70% 60%;
+    --primary: 255 80% 65%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 235 25% 18%;
-    --secondary-foreground: 235 70% 70%;
+    --secondary: 250 25% 18%;
+    --secondary-foreground: 255 80% 75%;
 
-    --muted: 230 20% 18%;
-    --muted-foreground: 230 15% 60%;
+    --muted: 230 20% 16%;
+    --muted-foreground: 220 15% 55%;
 
-    --accent: 15 85% 55%;
+    --accent: 25 95% 55%;
     --accent-foreground: 0 0% 100%;
 
-    --success: 150 60% 50%;
+    --success: 145 65% 50%;
     --success-foreground: 0 0% 100%;
 
     --warning: 40 90% 50%;
     --warning-foreground: 230 25% 10%;
 
-    --destructive: 0 70% 50%;
+    --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 230 20% 20%;
-    --input: 230 20% 20%;
-    --ring: 235 70% 60%;
+    --xp: 50 100% 55%;
+    --xp-foreground: 230 25% 10%;
 
-    --gradient-hero: linear-gradient(135deg, hsl(235 65% 50% / 0.15) 0%, hsl(15 85% 60% / 0.1) 100%);
-    --gradient-primary: linear-gradient(135deg, hsl(235 70% 55%) 0%, hsl(255 70% 60%) 100%);
+    --streak: 15 85% 55%;
+    --streak-foreground: 0 0% 100%;
+
+    --level: 280 75% 65%;
+    --level-foreground: 0 0% 100%;
+
+    --mountain-base: 145 35% 25%;
+    --mountain-mid: 145 45% 35%;
+    --mountain-peak: 200 25% 80%;
+
+    --border: 230 20% 18%;
+    --input: 230 20% 18%;
+    --ring: 255 80% 65%;
+
+    --gradient-hero: linear-gradient(180deg, hsl(230 30% 10%) 0%, hsl(220 35% 12%) 50%, hsl(145 25% 15%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(255 80% 60%) 0%, hsl(280 75% 60%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(230 25% 12%) 0%, hsl(230 25% 10%) 100%);
+    --gradient-mountain: linear-gradient(180deg, hsl(200 25% 25%) 0%, hsl(145 40% 30%) 40%, hsl(145 35% 20%) 100%);
 
-    --shadow-sm: 0 1px 2px hsl(0 0% 0% / 0.2);
-    --shadow-md: 0 4px 12px hsl(0 0% 0% / 0.3);
-    --shadow-lg: 0 8px 30px hsl(0 0% 0% / 0.4);
-    --shadow-glow: 0 0 40px hsl(235 70% 60% / 0.2);
+    --shadow-sm: 0 2px 4px hsl(0 0% 0% / 0.2);
+    --shadow-md: 0 4px 16px hsl(0 0% 0% / 0.3);
+    --shadow-lg: 0 12px 40px hsl(0 0% 0% / 0.4);
+    --shadow-glow: 0 0 30px hsl(255 80% 65% / 0.25);
 
-    --sidebar-background: 230 25% 10%;
+    --sidebar-background: 230 25% 8%;
     --sidebar-foreground: 40 20% 95%;
-    --sidebar-primary: 235 70% 60%;
+    --sidebar-primary: 255 80% 65%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 230 20% 15%;
+    --sidebar-accent: 230 20% 14%;
     --sidebar-accent-foreground: 40 20% 95%;
-    --sidebar-border: 230 20% 18%;
-    --sidebar-ring: 235 70% 60%;
+    --sidebar-border: 230 20% 16%;
+    --sidebar-ring: 255 80% 65%;
   }
 }
 
@@ -131,19 +165,30 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight;
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    @apply font-bold tracking-tight;
   }
 }
 
 @layer components {
   .glass-card {
-    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl;
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-2xl;
     box-shadow: var(--shadow-md);
   }
 
   .gradient-text {
     @apply bg-clip-text text-transparent;
     background-image: var(--gradient-primary);
+  }
+
+  .gradient-text-xp {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-xp);
+  }
+
+  .gradient-text-streak {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-streak);
   }
 
   .hover-lift {
@@ -155,10 +200,40 @@
     box-shadow: var(--shadow-lg);
   }
 
+  .hover-bounce {
+    @apply transition-transform duration-200 ease-out;
+  }
+
+  .hover-bounce:hover {
+    animation: bounce-small 0.4s ease-in-out;
+  }
+
   .path-line {
     background: linear-gradient(180deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
   }
 
+  .mountain-gradient {
+    background: var(--gradient-mountain);
+  }
+
+  .xp-badge {
+    background: var(--gradient-xp);
+    box-shadow: var(--shadow-xp);
+    @apply text-xp-foreground font-bold;
+  }
+
+  .streak-badge {
+    background: var(--gradient-streak);
+    box-shadow: var(--shadow-streak);
+    @apply text-streak-foreground font-bold;
+  }
+
+  .level-badge {
+    background: var(--gradient-level);
+    @apply text-level-foreground font-bold;
+  }
+
+  /* Animations */
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
@@ -175,6 +250,30 @@
     animation: fade-in 0.5s ease-out forwards;
   }
 
+  .animate-bounce-in {
+    animation: bounce-in 0.5s ease-out forwards;
+  }
+
+  .animate-glow {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+  .animate-confetti {
+    animation: confetti 0.8s ease-out forwards;
+  }
+
+  .animate-level-up {
+    animation: level-up 0.6s ease-out forwards;
+  }
+
+  .animate-climb {
+    animation: climb 0.8s ease-out forwards;
+  }
+
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+
   .progress-step {
     @apply relative flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all duration-300;
   }
@@ -189,6 +288,48 @@
 
   .progress-step.pending {
     @apply border-muted bg-muted text-muted-foreground;
+  }
+
+  /* Mountain checkpoint styles */
+  .checkpoint {
+    @apply relative flex items-center justify-center w-14 h-14 rounded-full border-4 transition-all duration-300 cursor-pointer;
+  }
+
+  .checkpoint.completed {
+    @apply border-success bg-success text-success-foreground;
+    box-shadow: 0 0 20px hsl(var(--success) / 0.5);
+  }
+
+  .checkpoint.current {
+    @apply border-primary bg-primary text-primary-foreground;
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+  .checkpoint.locked {
+    @apply border-muted bg-muted/50 text-muted-foreground backdrop-blur-sm;
+  }
+
+  /* Skill card styles */
+  .skill-card {
+    @apply bg-card border-2 rounded-2xl p-4 transition-all duration-300;
+  }
+
+  .skill-card.main {
+    @apply border-primary/30 bg-gradient-to-br from-primary/5 to-transparent;
+  }
+
+  .skill-card.habit {
+    @apply border-accent/30 bg-gradient-to-br from-accent/5 to-transparent;
+  }
+
+  .skill-card.challenge {
+    @apply border-level/30 bg-gradient-to-br from-level/5 to-transparent;
+  }
+
+  .skill-card:hover {
+    @apply border-primary/50;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
   }
 }
 
@@ -234,4 +375,111 @@
   to {
     opacity: 1;
   }
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce-small {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.6);
+  }
+}
+
+@keyframes confetti {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(720deg) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes level-up {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.3);
+  }
+  60% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes climb {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
 }

@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Onboarding from "./pages/Onboarding";
 import Dashboard from "./pages/Dashboard";
 import Roadmap from "./pages/Roadmap";
+import Progress from "./pages/Progress";
 import Pricing from "./pages/Pricing";
 import NotFound from "./pages/NotFound";
 
@@ -23,8 +24,8 @@ const App = () => (
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/roadmap" element={<Roadmap />} />
+          <Route path="/progress" element={<Progress />} />
           <Route path="/pricing" element={<Pricing />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
