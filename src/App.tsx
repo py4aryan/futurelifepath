@@ -9,6 +9,8 @@ import Dashboard from "./pages/Dashboard";
 import Roadmap from "./pages/Roadmap";
 import Progress from "./pages/Progress";
 import Pricing from "./pages/Pricing";
+import Schedule from "./pages/Schedule";
+import Services from "./pages/Services";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +28,8 @@ const App = () => (
           <Route path="/roadmap" element={<Roadmap />} />
           <Route path="/progress" element={<Progress />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/schedule" element={<Schedule />} />
+          <Route path="/services" element={<Services />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
