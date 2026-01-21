@@ -397,6 +397,126 @@
   .account-setting-item:hover {
     @apply bg-muted/50;
   }
+
+  /* Mountain Map - Candy Crush Style */
+  .mountain-map-bg {
+    background: linear-gradient(180deg, 
+      hsl(200 60% 85%) 0%, 
+      hsl(200 50% 78%) 20%,
+      hsl(180 40% 70%) 40%,
+      hsl(145 45% 55%) 70%,
+      hsl(145 40% 40%) 100%
+    );
+  }
+
+  .dark .mountain-map-bg {
+    background: linear-gradient(180deg, 
+      hsl(230 30% 15%) 0%, 
+      hsl(220 35% 18%) 20%,
+      hsl(200 30% 20%) 40%,
+      hsl(145 30% 20%) 70%,
+      hsl(145 25% 12%) 100%
+    );
+  }
+
+  .stage-row {
+    animation: stage-enter 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .stage-node {
+    @apply relative flex items-center justify-center w-16 h-16 rounded-full border-4 transition-all duration-300 cursor-pointer;
+    background: hsl(var(--card));
+    border-color: hsl(var(--border));
+  }
+
+  .stage-node.completed {
+    background: linear-gradient(135deg, hsl(var(--success)) 0%, hsl(145 65% 40%) 100%);
+    border-color: hsl(var(--success));
+    color: hsl(var(--success-foreground));
+    box-shadow: 0 0 25px hsl(var(--success) / 0.5), 0 0 50px hsl(var(--success) / 0.2);
+  }
+
+  .stage-node.current {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--level)) 100%);
+    border-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.5), 0 0 60px hsl(var(--primary) / 0.3);
+    animation: current-node-pulse 2s ease-in-out infinite;
+  }
+
+  .stage-node.locked {
+    @apply border-muted bg-muted/60 text-muted-foreground backdrop-blur-sm cursor-not-allowed;
+    filter: grayscale(0.5);
+  }
+
+  .stage-node.selected {
+    transform: scale(1.15);
+  }
+
+  .stage-node.celebrating {
+    animation: celebrate-node 0.5s ease-out;
+  }
+
+  .stage-card {
+    @apply p-4 rounded-2xl bg-card/95 backdrop-blur-md border-2 transition-all duration-300 cursor-pointer;
+    box-shadow: 0 4px 20px hsl(0 0% 0% / 0.1);
+  }
+
+  .stage-card.completed {
+    border-color: hsl(var(--success) / 0.4);
+    background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--success) / 0.05) 100%);
+  }
+
+  .stage-card.current {
+    border-color: hsl(var(--primary) / 0.6);
+    background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--primary) / 0.08) 100%);
+    box-shadow: 0 8px 30px hsl(var(--primary) / 0.2), 0 0 40px hsl(var(--primary) / 0.1);
+  }
+
+  .stage-card.locked {
+    border-color: hsl(var(--muted));
+    border-style: dashed;
+    opacity: 0.6;
+    filter: grayscale(0.3);
+  }
+
+  .stage-card.selected {
+    transform: scale(1.02);
+    box-shadow: 0 12px 40px hsl(var(--primary) / 0.25);
+  }
+
+  .stage-category {
+    @apply text-xs font-semibold px-2 py-1 rounded-full border flex items-center gap-1;
+  }
+
+  .stage-category.category-primary {
+    @apply bg-primary/10 text-primary border-primary/20;
+  }
+
+  .stage-category.category-accent {
+    @apply bg-accent/10 text-accent border-accent/20;
+  }
+
+  .stage-category.category-success {
+    @apply bg-success/10 text-success border-success/20;
+  }
+
+  .stage-category.category-level {
+    @apply bg-level/10 text-level border-level/20;
+  }
+
+  .summit-marker {
+    @apply w-16 h-16 rounded-full flex items-center justify-center;
+    background: linear-gradient(135deg, hsl(50 100% 50%) 0%, hsl(25 100% 55%) 50%, hsl(15 90% 50%) 100%);
+    box-shadow: 0 0 40px hsl(50 100% 50% / 0.4), 0 0 80px hsl(25 100% 55% / 0.3);
+    animation: summit-glow 3s ease-in-out infinite;
+  }
+
+  .base-camp-marker {
+    @apply px-4 py-2 rounded-full bg-card border-2 border-primary/30 text-primary font-semibold;
+    box-shadow: 0 4px 20px hsl(var(--primary) / 0.2);
+  }
 }
 
 @layer utilities {
@@ -549,6 +669,174 @@
     opacity: 0;
   }
 }
+
+/* Mountain Map Animations */
+@keyframes stage-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  60% {
+    transform: translateY(-5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes current-node-pulse {
+  0%, 100% {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.5), 0 0 60px hsl(var(--primary) / 0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 50px hsl(var(--primary) / 0.7), 0 0 100px hsl(var(--primary) / 0.4);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes celebrate-node {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.3) rotate(-10deg); }
+  50% { transform: scale(1.4) rotate(10deg); }
+  75% { transform: scale(1.2) rotate(-5deg); }
+  100% { transform: scale(1); }
+}
+
+@keyframes summit-glow {
+  0%, 100% {
+    box-shadow: 0 0 40px hsl(50 100% 50% / 0.4), 0 0 80px hsl(25 100% 55% / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 60px hsl(50 100% 50% / 0.6), 0 0 120px hsl(25 100% 55% / 0.5);
+  }
+}
+
+@keyframes animate-path-glow {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.3);
+  }
+}
+
+@keyframes float-particle {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-40px) translateX(-5px);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-20px) translateX(15px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes confetti-burst {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--x, 100px)), calc(-50% + var(--y, -100px))) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes victory-popup {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes trophy-bounce {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-20px) rotate(-5deg); }
+  50% { transform: translateY(-30px); }
+  75% { transform: translateY(-20px) rotate(5deg); }
+}
+
+@keyframes ping-slow {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-ring {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+.animate-float-particle {
+  animation: float-particle 5s ease-in-out infinite;
+}
+
+.animate-path-glow {
+  animation: animate-path-glow 2s ease-in-out infinite;
+}
+
+.animate-ping-slow {
+  animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+.animate-victory-popup {
+  animation: victory-popup 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-trophy-bounce {
+  animation: trophy-bounce 1s ease-in-out infinite;
+}
+
+.animate-confetti-burst {
+  --x: 0px;
+  --y: 0px;
+  animation: confetti-burst 0.8s ease-out forwards;
+}
+
+.animate-confetti-burst:nth-child(1) { --x: 80px; --y: -60px; }
+.animate-confetti-burst:nth-child(2) { --x: -70px; --y: -80px; }
+.animate-confetti-burst:nth-child(3) { --x: 60px; --y: -90px; }
+.animate-confetti-burst:nth-child(4) { --x: -80px; --y: -50px; }
+.animate-confetti-burst:nth-child(5) { --x: 90px; --y: -70px; }
+.animate-confetti-burst:nth-child(6) { --x: -60px; --y: -100px; }
+.animate-confetti-burst:nth-child(7) { --x: 50px; --y: -85px; }
+.animate-confetti-burst:nth-child(8) { --x: -90px; --y: -60px; }
+.animate-confetti-burst:nth-child(9) { --x: 70px; --y: -95px; }
+.animate-confetti-burst:nth-child(10) { --x: -50px; --y: -75px; }
+.animate-confetti-burst:nth-child(11) { --x: 85px; --y: -55px; }
+.animate-confetti-burst:nth-child(12) { --x: -75px; --y: -90px; }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
