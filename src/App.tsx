@@ -11,6 +11,7 @@ import Progress from "./pages/Progress";
 import Pricing from "./pages/Pricing";
 import Schedule from "./pages/Schedule";
 import Services from "./pages/Services";
+import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/auth" element={<Auth />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
