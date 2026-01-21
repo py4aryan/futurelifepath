@@ -382,8 +382,20 @@
 
   .auth-button-secondary:active {
     transform: translateY(0) scale(0.98);
-    transform: translateY(-2px);
+  }
+
+  /* Account Page Styles */
+  .account-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-2xl;
     box-shadow: var(--shadow-md);
+  }
+
+  .account-setting-item {
+    @apply flex items-center justify-between w-full px-6 py-4 transition-all duration-200;
+  }
+
+  .account-setting-item:hover {
+    @apply bg-muted/50;
   }
 }
 

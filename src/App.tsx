@@ -12,6 +12,7 @@ import Pricing from "./pages/Pricing";
 import Schedule from "./pages/Schedule";
 import Services from "./pages/Services";
 import Auth from "./pages/Auth";
+import Account from "./pages/Account";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/services" element={<Services />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/account" element={<Account />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
