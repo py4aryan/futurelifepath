@@ -518,101 +518,281 @@
     box-shadow: 0 4px 20px hsl(var(--primary) / 0.2);
   }
 
-  /* Candy Crush Style Map Enhancements */
-  .mountain-parallax-bg {
-    @apply relative overflow-hidden;
+  /* === 3D MOUNTAIN ENVIRONMENT === */
+  
+  .mountain-3d-sky {
     background: linear-gradient(180deg, 
-      hsl(200 60% 85%) 0%, 
-      hsl(200 50% 78%) 15%,
-      hsl(180 40% 70%) 35%,
-      hsl(145 45% 55%) 60%,
-      hsl(145 40% 40%) 85%,
-      hsl(145 35% 30%) 100%
+      hsl(210 65% 88%) 0%,
+      hsl(200 55% 82%) 15%,
+      hsl(195 45% 76%) 30%,
+      hsl(180 40% 70%) 50%,
+      hsl(155 45% 58%) 70%,
+      hsl(145 45% 45%) 85%,
+      hsl(145 40% 35%) 100%
     );
   }
 
-  .dark .mountain-parallax-bg {
+  .dark .mountain-3d-sky {
     background: linear-gradient(180deg, 
-      hsl(230 30% 12%) 0%, 
-      hsl(220 35% 15%) 15%,
-      hsl(200 30% 18%) 35%,
-      hsl(145 30% 18%) 60%,
-      hsl(145 25% 12%) 85%,
-      hsl(145 20% 8%) 100%
+      hsl(230 35% 8%) 0%,
+      hsl(225 35% 12%) 15%,
+      hsl(220 30% 15%) 30%,
+      hsl(200 25% 18%) 50%,
+      hsl(160 30% 15%) 70%,
+      hsl(145 30% 12%) 85%,
+      hsl(145 25% 8%) 100%
     );
   }
 
-  .mountain-layer-1 {
-    animation: parallax-float-slow 20s ease-in-out infinite;
+  .fog-layer-1 {
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      hsl(200 50% 95% / 0.3) 30%, 
+      hsl(200 50% 95% / 0.4) 50%,
+      hsl(200 50% 95% / 0.3) 70%,
+      transparent 100%
+    );
+    animation: fog-drift-1 30s ease-in-out infinite;
   }
 
-  .mountain-layer-2 {
-    animation: parallax-float-medium 15s ease-in-out infinite;
+  .fog-layer-2 {
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      hsl(200 50% 95% / 0.25) 25%, 
+      hsl(200 50% 95% / 0.35) 55%,
+      transparent 100%
+    );
+    animation: fog-drift-2 40s ease-in-out infinite;
   }
 
-  .cloud-float {
-    animation: cloud-drift 25s linear infinite;
+  .fog-layer-3 {
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      hsl(200 50% 95% / 0.2) 40%, 
+      hsl(200 50% 95% / 0.3) 60%,
+      transparent 100%
+    );
+    animation: fog-drift-3 25s ease-in-out infinite;
   }
 
-  .stage-node-candy {
+  .dark .fog-layer-1,
+  .dark .fog-layer-2,
+  .dark .fog-layer-3 {
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      hsl(220 30% 20% / 0.4) 50%,
+      transparent 100%
+    );
+  }
+
+  .cloud-3d {
+    animation: cloud-drift-3d 40s linear infinite;
+  }
+
+  .cloud-shape {
+    filter: blur(1px);
+  }
+
+  .tree-3d {
+    filter: drop-shadow(2px 4px 3px hsl(0 0% 0% / 0.2));
+  }
+
+  /* 3D Stage Nodes */
+  .stage-node-3d {
     @apply relative flex items-center justify-center w-14 h-14 rounded-full border-4 transition-all duration-300 cursor-pointer;
-    background: hsl(var(--muted));
+    background: linear-gradient(135deg, hsl(var(--muted)) 0%, hsl(var(--muted) / 0.8) 100%);
     border-color: hsl(var(--border));
-  }
-
-  .stage-node-candy.completed {
-    background: linear-gradient(135deg, hsl(var(--success)) 0%, hsl(145 65% 35%) 100%);
-    border-color: hsl(145 70% 60%);
     box-shadow: 
-      0 0 20px hsl(var(--success) / 0.5), 
-      0 4px 15px hsl(var(--success) / 0.3),
-      inset 0 2px 4px hsl(0 0% 100% / 0.3);
+      0 4px 10px hsl(0 0% 0% / 0.2),
+      inset 0 2px 3px hsl(0 0% 100% / 0.2),
+      inset 0 -2px 3px hsl(0 0% 0% / 0.1);
   }
 
-  .stage-node-candy.current {
+  .stage-node-3d.completed {
+    background: linear-gradient(135deg, hsl(var(--success)) 0%, hsl(145 60% 35%) 100%);
+    border-color: hsl(145 70% 55%);
+    box-shadow: 
+      0 0 25px hsl(var(--success) / 0.5),
+      0 6px 20px hsl(var(--success) / 0.4),
+      inset 0 2px 4px hsl(0 0% 100% / 0.4),
+      inset 0 -2px 4px hsl(0 0% 0% / 0.2);
+  }
+
+  .stage-node-3d.current {
     background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--level)) 100%);
-    border-color: hsl(var(--primary-foreground) / 0.5);
+    border-color: hsl(0 0% 100% / 0.6);
     box-shadow: 
-      0 0 30px hsl(var(--primary) / 0.6), 
-      0 0 60px hsl(var(--primary) / 0.3),
+      0 0 40px hsl(var(--primary) / 0.6),
+      0 0 80px hsl(var(--primary) / 0.3),
+      0 8px 25px hsl(var(--primary) / 0.5),
+      inset 0 2px 4px hsl(0 0% 100% / 0.5),
+      inset 0 -2px 4px hsl(0 0% 0% / 0.2);
+    animation: current-node-3d-pulse 2.5s ease-in-out infinite;
+  }
+
+  .stage-node-3d.locked {
+    @apply cursor-not-allowed;
+    background: linear-gradient(135deg, hsl(var(--muted) / 0.6) 0%, hsl(var(--muted) / 0.4) 100%);
+    border-color: hsl(var(--muted) / 0.5);
+    color: hsl(var(--muted-foreground) / 0.5);
+    filter: grayscale(0.7) brightness(0.85);
+    box-shadow: 
+      inset 0 2px 8px hsl(0 0% 0% / 0.3),
+      0 2px 4px hsl(0 0% 0% / 0.1);
+  }
+
+  .stage-node-3d.celebrating {
+    animation: celebrate-3d 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .locked-fog {
+    background: radial-gradient(circle, hsl(var(--muted) / 0.6) 0%, transparent 70%);
+    backdrop-blur: 2px;
+  }
+
+  .current-ring-1 {
+    background: hsl(var(--primary) / 0.3);
+    animation: current-ring-pulse 2s ease-out infinite;
+  }
+
+  .current-ring-2 {
+    border: 2px solid hsl(var(--primary) / 0.4);
+    animation: current-ring-pulse 2s ease-out infinite 0.5s;
+  }
+
+  .current-ring-3 {
+    border: 1px solid hsl(var(--primary) / 0.2);
+    animation: current-ring-pulse 2s ease-out infinite 1s;
+  }
+
+  .sparkle-orbit {
+    animation: sparkle-orbit 3s ease-in-out infinite;
+  }
+
+  /* 3D Summit */
+  .summit-3d {
+    animation: summit-float 4s ease-in-out infinite;
+  }
+
+  .summit-outer-glow {
+    background: radial-gradient(circle, hsl(var(--accent) / 0.2) 0%, transparent 70%);
+    animation: summit-outer-pulse 3s ease-in-out infinite;
+  }
+
+  .summit-inner-glow {
+    background: radial-gradient(circle, hsl(var(--accent) / 0.4) 0%, transparent 60%);
+    animation: summit-inner-pulse 2s ease-in-out infinite;
+  }
+
+  .summit-badge {
+    background: linear-gradient(135deg, hsl(50 100% 50%) 0%, hsl(var(--accent)) 50%, hsl(15 90% 50%) 100%);
+    box-shadow: 
+      0 0 50px hsl(50 100% 50% / 0.4),
+      0 0 100px hsl(var(--accent) / 0.3),
+      0 8px 30px hsl(0 0% 0% / 0.3),
+      inset 0 2px 4px hsl(0 0% 100% / 0.4);
+  }
+
+  /* 3D Climber */
+  .climber-3d {
+    filter: drop-shadow(0 6px 10px hsl(0 0% 0% / 0.35));
+  }
+
+  .climber-glow {
+    background: radial-gradient(circle, hsl(var(--primary) / 0.4) 0%, transparent 70%);
+    animation: climber-glow-pulse 2s ease-in-out infinite;
+  }
+
+  .climber-body {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--level)) 100%);
+    border: 3px solid hsl(0 0% 100% / 0.8);
+    box-shadow: 
+      0 4px 15px hsl(var(--primary) / 0.5),
       inset 0 2px 4px hsl(0 0% 100% / 0.3);
-    animation: current-node-pulse 2s ease-in-out infinite;
-  }
-
-  .stage-node-candy.locked {
-    @apply border-muted/50 text-muted-foreground/50 cursor-not-allowed;
-    background: hsl(var(--muted) / 0.5);
-    filter: grayscale(0.6) brightness(0.8);
-    box-shadow: inset 0 2px 8px hsl(0 0% 0% / 0.2);
-  }
-
-  .stage-node-candy.celebrating {
-    animation: celebrate-node 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  .summit-marker-enhanced {
-    animation: summit-glow 3s ease-in-out infinite, float-gentle 4s ease-in-out infinite;
-  }
-
-  .climber-avatar {
-    filter: drop-shadow(0 4px 8px hsl(0 0% 0% / 0.3));
   }
 
   .climber-idle {
-    animation: climber-breathe 3s ease-in-out infinite;
+    animation: climber-idle-3d 3s ease-in-out infinite;
   }
 
-  .path-lit-stroke {
-    filter: drop-shadow(0 0 8px hsl(var(--primary) / 0.6));
-    transition: stroke-dashoffset 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* 3D Popup */
+  .popup-3d {
+    animation: popup-enter 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   }
 
-  .stage-popup-card {
-    filter: drop-shadow(0 25px 50px hsl(0 0% 0% / 0.25));
+  .popup-card {
+    background: linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.95) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border) / 0.5);
+    box-shadow: 
+      0 25px 80px hsl(0 0% 0% / 0.3),
+      0 10px 30px hsl(0 0% 0% / 0.2),
+      inset 0 1px 0 hsl(0 0% 100% / 0.1);
   }
 
-  .animate-scale-in {
-    animation: scale-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  .complete-btn {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--level)) 50%, hsl(var(--accent)) 100%);
+    background-size: 200% 100%;
+    color: hsl(var(--primary-foreground));
+    box-shadow: 
+      0 4px 20px hsl(var(--primary) / 0.4),
+      inset 0 1px 0 hsl(0 0% 100% / 0.2);
+    animation: gradient-shift 3s ease infinite;
+    transition: all 0.3s ease;
+  }
+
+  .complete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 8px 30px hsl(var(--primary) / 0.5),
+      inset 0 1px 0 hsl(0 0% 100% / 0.3);
+  }
+
+  /* Celebration */
+  .celebration-overlay {
+    background: hsl(var(--background) / 0.85);
+    backdrop-filter: blur(12px);
+    animation: celebration-fade-in 0.5s ease-out;
+  }
+
+  .trophy-container {
+    background: linear-gradient(135deg, hsl(var(--success)) 0%, hsl(var(--primary)) 50%, hsl(var(--accent)) 100%);
+    box-shadow: 
+      0 0 60px hsl(var(--success) / 0.5),
+      0 0 120px hsl(var(--primary) / 0.3),
+      0 10px 40px hsl(0 0% 0% / 0.3);
+    animation: trophy-bounce-3d 1.5s ease-in-out infinite;
+  }
+
+  .confetti-piece {
+    animation: confetti-burst-3d 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .celebration-text {
+    background: linear-gradient(135deg, hsl(var(--success)) 0%, hsl(var(--primary)) 50%, hsl(var(--accent)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: celebration-text-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .unlock-notification {
+    animation: unlock-slide-up 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+  }
+
+  .base-camp-badge {
+    background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.9) 100%);
+    border: 2px solid hsl(var(--primary) / 0.3);
+    box-shadow: 
+      0 4px 20px hsl(var(--primary) / 0.2),
+      inset 0 1px 0 hsl(0 0% 100% / 0.1);
+  }
+
+  .stage-3d-container {
+    animation: stage-3d-enter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    opacity: 0;
   }
 }
 
@@ -935,7 +1115,202 @@
 .animate-confetti-burst:nth-child(11) { --x: 85px; --y: -55px; }
 .animate-confetti-burst:nth-child(12) { --x: -75px; --y: -90px; }
 
-/* Enhanced Candy Crush Style Animations */
+/* === 3D MOUNTAIN ANIMATIONS === */
+
+@keyframes fog-drift-1 {
+  0%, 100% { transform: translateX(-10%); opacity: 0.3; }
+  50% { transform: translateX(10%); opacity: 0.5; }
+}
+
+@keyframes fog-drift-2 {
+  0%, 100% { transform: translateX(15%); opacity: 0.25; }
+  50% { transform: translateX(-15%); opacity: 0.4; }
+}
+
+@keyframes fog-drift-3 {
+  0%, 100% { transform: translateX(-5%); opacity: 0.2; }
+  50% { transform: translateX(8%); opacity: 0.35; }
+}
+
+@keyframes cloud-drift-3d {
+  0% { transform: translateX(-30%) translateY(0); }
+  25% { transform: translateX(10%) translateY(-8px); }
+  50% { transform: translateX(50%) translateY(0); }
+  75% { transform: translateX(90%) translateY(5px); }
+  100% { transform: translateX(130%) translateY(0); }
+}
+
+@keyframes current-node-3d-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 40px hsl(var(--primary) / 0.6),
+      0 0 80px hsl(var(--primary) / 0.3),
+      0 8px 25px hsl(var(--primary) / 0.5),
+      inset 0 2px 4px hsl(0 0% 100% / 0.5);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 
+      0 0 60px hsl(var(--primary) / 0.8),
+      0 0 120px hsl(var(--primary) / 0.5),
+      0 10px 35px hsl(var(--primary) / 0.6),
+      inset 0 2px 4px hsl(0 0% 100% / 0.6);
+    transform: scale(1.08);
+  }
+}
+
+@keyframes current-ring-pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes celebrate-3d {
+  0% { transform: scale(1) rotate(0deg); }
+  20% { transform: scale(1.4) rotate(-15deg); }
+  40% { transform: scale(1.5) rotate(15deg); }
+  60% { transform: scale(1.3) rotate(-8deg); }
+  80% { transform: scale(1.1) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes sparkle-orbit {
+  0%, 100% { 
+    transform: translate(150%, -50%) scale(0.5);
+    opacity: 0;
+  }
+  25% {
+    transform: translate(50%, -150%) scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: translate(-150%, -50%) scale(0.8);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translate(50%, 100%) scale(0.6);
+    opacity: 0.5;
+  }
+}
+
+@keyframes summit-float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+@keyframes summit-outer-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.2; }
+  50% { transform: scale(1.3); opacity: 0.4; }
+}
+
+@keyframes summit-inner-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.15); opacity: 0.6; }
+}
+
+@keyframes climber-glow-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+@keyframes climber-idle-3d {
+  0%, 100% { transform: scale(1) translateY(0); }
+  25% { transform: scale(1.02) translateY(-2px); }
+  50% { transform: scale(1.04) translateY(-3px); }
+  75% { transform: scale(1.02) translateY(-1px); }
+}
+
+@keyframes popup-enter {
+  0% { 
+    transform: translate(-50%, -50%) scale(0.8) translateY(20px);
+    opacity: 0;
+  }
+  100% { 
+    transform: translate(-50%, -50%) scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes trophy-bounce-3d {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  20% { transform: translateY(-25px) rotate(-5deg); }
+  40% { transform: translateY(-35px) rotate(3deg); }
+  60% { transform: translateY(-25px) rotate(-2deg); }
+  80% { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes confetti-burst-3d {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: 
+      translate(
+        calc(-50% + var(--x, 100px)), 
+        calc(-50% + var(--y, -100px))
+      ) 
+      scale(0.3) 
+      rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti-piece:nth-child(1) { --x: 120px; --y: -90px; }
+.confetti-piece:nth-child(2) { --x: -100px; --y: -120px; }
+.confetti-piece:nth-child(3) { --x: 90px; --y: -140px; }
+.confetti-piece:nth-child(4) { --x: -120px; --y: -80px; }
+.confetti-piece:nth-child(5) { --x: 130px; --y: -100px; }
+.confetti-piece:nth-child(6) { --x: -90px; --y: -150px; }
+.confetti-piece:nth-child(7) { --x: 80px; --y: -130px; }
+.confetti-piece:nth-child(8) { --x: -130px; --y: -90px; }
+.confetti-piece:nth-child(9) { --x: 100px; --y: -145px; }
+.confetti-piece:nth-child(10) { --x: -80px; --y: -110px; }
+.confetti-piece:nth-child(11) { --x: 115px; --y: -85px; }
+.confetti-piece:nth-child(12) { --x: -105px; --y: -135px; }
+.confetti-piece:nth-child(13) { --x: 70px; --y: -125px; }
+.confetti-piece:nth-child(14) { --x: -140px; --y: -95px; }
+.confetti-piece:nth-child(15) { --x: 95px; --y: -155px; }
+.confetti-piece:nth-child(16) { --x: -85px; --y: -130px; }
+.confetti-piece:nth-child(17) { --x: 135px; --y: -105px; }
+.confetti-piece:nth-child(18) { --x: -95px; --y: -145px; }
+.confetti-piece:nth-child(19) { --x: 85px; --y: -95px; }
+.confetti-piece:nth-child(20) { --x: -115px; --y: -115px; }
+.confetti-piece:nth-child(21) { --x: 110px; --y: -135px; }
+.confetti-piece:nth-child(22) { --x: -75px; --y: -100px; }
+.confetti-piece:nth-child(23) { --x: 125px; --y: -120px; }
+.confetti-piece:nth-child(24) { --x: -110px; --y: -140px; }
+
+@keyframes celebration-fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes celebration-text-pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes unlock-slide-up {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes stage-3d-enter {
+  0% { 
+    transform: translate(-50%, -50%) scale(0.5) translateY(30px);
+    opacity: 0;
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.1) translateY(-5px);
+  }
+  100% { 
+    transform: translate(-50%, -50%) scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Legacy animation support */
 @keyframes parallax-float-slow {
   0%, 100% { transform: translateY(0) translateX(0); }
   50% { transform: translateY(-10px) translateX(5px); }
@@ -963,75 +1338,30 @@
 }
 
 @keyframes avatar-glow {
-  0%, 100% { 
-    opacity: 0.4;
-    transform: scale(1);
-  }
-  50% { 
-    opacity: 0.7;
-    transform: scale(1.2);
-  }
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.2); }
 }
 
 @keyframes sparkle-float {
-  0%, 100% { 
-    opacity: 0;
-    transform: translateY(0) scale(0.5);
-  }
-  50% { 
-    opacity: 1;
-    transform: translateY(-10px) scale(1);
-  }
+  0%, 100% { opacity: 0; transform: translateY(0) scale(0.5); }
+  50% { opacity: 1; transform: translateY(-10px) scale(1); }
 }
 
 @keyframes confetti-burst-enhanced {
-  0% {
-    transform: translate(-50%, -50%) scale(0) rotate(0deg);
-    opacity: 1;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(calc(-50% + var(--x, 100px)), calc(-50% + var(--y, -100px))) scale(0.5) rotate(720deg);
-    opacity: 0;
-  }
+  0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; }
+  50% { opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--x, 100px)), calc(-50% + var(--y, -100px))) scale(0.5) rotate(720deg); opacity: 0; }
 }
 
 @keyframes victory-text {
-  0% { 
-    transform: scale(0.5);
-    opacity: 0;
-  }
-  50% { 
-    transform: scale(1.1);
-  }
-  100% { 
-    transform: scale(1);
-    opacity: 1;
-  }
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 @keyframes summit-pulse {
-  0%, 100% { 
-    transform: scale(1);
-    opacity: 0.3;
-  }
-  50% { 
-    transform: scale(1.5);
-    opacity: 0.1;
-  }
-}
-
-@keyframes scale-in {
-  0% {
-    transform: translate(-50%, -50%) scale(0.8);
-    opacity: 0;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.5); opacity: 0.1; }
 }
 
 .animate-avatar-glow {
@@ -1047,27 +1377,6 @@
   --y: 0px;
   animation: confetti-burst-enhanced 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
-
-.animate-confetti-burst-enhanced:nth-child(1) { --x: 100px; --y: -80px; }
-.animate-confetti-burst-enhanced:nth-child(2) { --x: -90px; --y: -100px; }
-.animate-confetti-burst-enhanced:nth-child(3) { --x: 80px; --y: -120px; }
-.animate-confetti-burst-enhanced:nth-child(4) { --x: -100px; --y: -70px; }
-.animate-confetti-burst-enhanced:nth-child(5) { --x: 110px; --y: -90px; }
-.animate-confetti-burst-enhanced:nth-child(6) { --x: -80px; --y: -130px; }
-.animate-confetti-burst-enhanced:nth-child(7) { --x: 70px; --y: -110px; }
-.animate-confetti-burst-enhanced:nth-child(8) { --x: -110px; --y: -80px; }
-.animate-confetti-burst-enhanced:nth-child(9) { --x: 90px; --y: -125px; }
-.animate-confetti-burst-enhanced:nth-child(10) { --x: -70px; --y: -95px; }
-.animate-confetti-burst-enhanced:nth-child(11) { --x: 105px; --y: -75px; }
-.animate-confetti-burst-enhanced:nth-child(12) { --x: -95px; --y: -115px; }
-.animate-confetti-burst-enhanced:nth-child(13) { --x: 60px; --y: -105px; }
-.animate-confetti-burst-enhanced:nth-child(14) { --x: -120px; --y: -85px; }
-.animate-confetti-burst-enhanced:nth-child(15) { --x: 85px; --y: -135px; }
-.animate-confetti-burst-enhanced:nth-child(16) { --x: -75px; --y: -110px; }
-.animate-confetti-burst-enhanced:nth-child(17) { --x: 115px; --y: -95px; }
-.animate-confetti-burst-enhanced:nth-child(18) { --x: -85px; --y: -125px; }
-.animate-confetti-burst-enhanced:nth-child(19) { --x: 75px; --y: -85px; }
-.animate-confetti-burst-enhanced:nth-child(20) { --x: -105px; --y: -100px; }
 
 .animate-victory-text {
   animation: victory-text 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
