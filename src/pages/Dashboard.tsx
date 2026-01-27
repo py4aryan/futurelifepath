@@ -5,6 +5,7 @@ import { DailySkillCard, DailySkill } from "@/components/DailySkillCard";
 import { StreakCounter, XPCounter } from "@/components/StreakCounter";
 import { RewardCard } from "@/components/RewardCard";
 import { CustomSkillModal } from "@/components/CustomSkillModal";
+import { LogoHomeButton } from "@/components/LogoHomeButton";
 import {
   Home,
   Mountain,
@@ -16,8 +17,6 @@ import {
   Gift,
   ChevronRight,
   Plus,
-  Sparkles,
-  
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -141,12 +140,7 @@ export default function Dashboard() {
       <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-xl">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-xl bg-gradient-primary flex items-center justify-center animate-pulse-slow">
-                <Mountain className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <span className="font-display font-bold text-lg">LifePath</span>
-            </div>
+            <LogoHomeButton />
 
             {/* Stats */}
             <div className="hidden sm:flex items-center gap-4">

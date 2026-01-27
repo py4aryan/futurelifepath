@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { XPCounter, StatsBadge } from "@/components/StreakCounter";
+import { LogoHomeButton } from "@/components/LogoHomeButton";
 import { Home, Mountain, BarChart3, User, Flame, Trophy, Zap, Target, TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -36,12 +37,7 @@ export default function Progress() {
       <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-xl">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-xl bg-gradient-primary flex items-center justify-center">
-                <Mountain className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <span className="font-display font-bold text-lg">LifePath</span>
-            </div>
+            <LogoHomeButton />
             <nav className="hidden md:flex items-center gap-1">
               {navItems.map((item) => (
                 <Button key={item.label} variant="ghost" className={cn("gap-2", item.path === "/progress" && "bg-secondary text-secondary-foreground")} onClick={() => navigate(item.path)}>
