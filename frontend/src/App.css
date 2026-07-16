@@ -1,0 +1,6 @@
+/* Celestix App - dark stone theme forced globally */
+#root {
+  min-height: 100vh;
+  background-color: hsl(222, 28%, 7%);
+  color: hsl(38, 20%, 88%);
+}
